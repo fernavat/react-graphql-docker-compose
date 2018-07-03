@@ -2,6 +2,7 @@ version: '3'
 services:
   frontend:
     build: frontend
+    restart: always
     ports:
       - "3000:3000"
     depends_on:
@@ -11,6 +12,7 @@ services:
       - /usr/app/node_modules      
   backend:
     build: backend
+    restart: always
     command: /usr/app/node_modules/.bin/nodemon src/index.js
     ports:
       - "4000:4000"
