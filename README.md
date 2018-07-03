@@ -14,7 +14,7 @@ docker-compose -f docker-compose.prisma-deploy.yml down
 ## Development
 
 ```
-docker-compose -d up
+docker-compose up -d
 ```
 
 For development, the `backend/` and `frontend/` directories have their own docker containers, which are configured via the `docker-compose.yml` file.
