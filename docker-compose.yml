@@ -1,0 +1,59 @@
+version: '3'
+services:
+  frontend:
+    build: frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    volumes:
+      - ./frontend:/usr/app
+      - /usr/app/node_modules      
+  backend:
+    build: backend
+    command: /usr/app/node_modules/.bin/nodemon src/index.js
+    ports:
+      - "4000:4000"
+    volumes:
+      - ./backend:/usr/app
+      - /usr/app/node_modules
+    environment:
+        - NODE_ENV=development   
+    depends_on: 
+      - prisma
+  prisma:
+    image: prismagraphql/prisma:1.8
+    restart: always
+    ports:
+      - "4466:4466"
+    depends_on: 
+      - mysql
+    environment:
+      PRISMA_CONFIG: |
+        port: 4466
+        databases:
+          default:
+            connector: mysql
+            host: mysql
+            port: 3306
+            user: root
+            password: prisma
+            migrations: true
+  myadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - "8080:80"
+    environment:
+      - PMA_ARBITRARY=1
+    restart: always
+    depends_on:
+      - mysql
+  mysql:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: prisma
+    volumes:
+      - mysql:/var/lib/mysql
+volumes:
+  mysql:

@@ -1,0 +1,28 @@
+{
+  "name": "graphql-server",
+  "version": "1.0.0",
+  "description": "graphql tutorial",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fernavat/graphql-nodejs-server-tutorial.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fernavat/graphql-nodejs-server-tutorial/issues"
+  },
+  "homepage": "https://github.com/fernavat/graphql-nodejs-server-tutorial#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "graphql-yoga": "^1.14.7",
+    "jsonwebtoken": "^8.3.0",
+    "prisma-binding": "^2.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.17.5"
+  }
+}
