@@ -28,7 +28,6 @@ const server = new GraphQLServer({
   })
 })
 
-// API test
 /*
 server.get('/backendIP', (req, res) => {
   res.set('Content-Type', 'application/json');

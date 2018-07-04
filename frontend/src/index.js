@@ -15,8 +15,6 @@ import { InMemoryCache } from 'apollo-cache-inmemory'
 
 import { AUTH_TOKEN } from './constants'
 
-
-
 const middlewareAuthLink = new ApolloLink((operation, forward) => {
   const token = localStorage.getItem(AUTH_TOKEN)
   const authorizationHeader = token ? `Bearer ${token}` : null
@@ -29,11 +27,11 @@ const middlewareAuthLink = new ApolloLink((operation, forward) => {
 })
 
 const httpLink = new HttpLink({ uri: '/' })
-
 const httpLinkWithAuthToken = middlewareAuthLink.concat(httpLink)
 
+const os = require('os')
 const wsLink = new WebSocketLink({
-  uri: `ws://10.1.2.123:4000`,
+  uri: `ws://${os.hostname()}:4000`,
   options: {
     reconnect: true,
     connectionParams: {
